@@ -29,7 +29,7 @@ public class EmployeTest {
         Integer anneeAnciennete = employe.getNombreAnneeAnciennete();
 
         //then
-        Assertions.assertThat(anneeAnciennete).isNull();
+        Assertions.assertThat(anneeAnciennete).isEqualTo(6);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class EmployeTest {
         Integer anneeAnciennete = employe.getNombreAnneeAnciennete();
 
         //then
-        Assertions.assertThat(anneeAnciennete).isEqualTo(6);
+        Assertions.assertThat(anneeAnciennete).isNull();
     }
 
     @Test
@@ -55,4 +55,6 @@ public class EmployeTest {
         //Then
         Assertions.assertThat(anneeAnciennete).isEqualTo(0);
     }
+
+ 
 }
