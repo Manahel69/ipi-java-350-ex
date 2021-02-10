@@ -1,0 +1,4 @@
+2021-02-10 11:28:10 - INFO  - Embauche d'un employé avec les infos suivantes : nom : Doe prénom : John, poste TECHNICIEN, niveau d'étude : BTS_IUT, taux activité : 1.0
+2021-02-10 11:28:10 - ERROR - Limite des 100000 matricules atteinte !
+2021-02-10 11:38:29 - INFO  - Embauche d'un employé avec les infos suivantes : nom : Doe prénom : John, poste TECHNICIEN, niveau d'étude : BTS_IUT, taux activité : 1.0
+2021-02-10 11:38:29 - ERROR - Limite des 100000 matricules atteinte !
