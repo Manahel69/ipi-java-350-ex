@@ -14,9 +14,6 @@ import java.util.Objects;
 
 @Entity
 public class Employe {
-    @Autowired
-    EmployeRepository employeRepository;
-
 
     public static final String EXCEPTION_NULL_SALARY = "le salaire renvoyé est null" ;
     public static final String EXCEPTION_NEGATIVE_SALARY = "le salaire renvoyé est negatif";
@@ -95,6 +92,7 @@ public Integer getNbRtt(LocalDate d ) {
             System.out.println("test");
             if (d.isLeapYear()) nbSamediDimache = nbSamediDimache + 2;
             else nbSamediDimache = nbSamediDimache + 1;
+            break;
         case SATURDAY:
             nbSamediDimache = nbSamediDimache + 1;
             break;

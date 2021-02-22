@@ -1,6 +1,7 @@
 package com.ipiecoles.java.java350.service;
 
 import com.ipiecoles.java.java350.model.Employe;
+import com.ipiecoles.java.java350.model.Entreprise;
 import com.ipiecoles.java.java350.model.NiveauEtude;
 import com.ipiecoles.java.java350.model.Poste;
 import com.ipiecoles.java.java350.repository.EmployeRepository;
@@ -46,6 +47,28 @@ public class EmployerServiceIntegerTest {
 
 
         }
+
+        @Test
+        public void testCalculPerformanceCommercialEmployeMatriculeNull() throws  Exception{
+            String nom = "Doe";
+            String prenom = "John";
+            Poste poste = Poste.COMMERCIAL;
+            NiveauEtude niveauEtude = NiveauEtude.BTS_IUT;
+            Double tempsPartiel = 1.0 ;
+
+            employeService.embaucheEmploye(nom,prenom,poste,niveauEtude,tempsPartiel);
+
+            //then
+
+           String matricule = "C00001";
+           employeService.calculPerformanceCommercial(matricule,1500L,2500L);
+           Employe employe = employeRepository.findByMatricule(matricule);
+          // employe.getPerformance();
+           Assertions.assertThat(employe.getPerformance()).isEqualTo(Entreprise.PERFORMANCE_BASE);
+
+
+        }
+
 
 }
 
