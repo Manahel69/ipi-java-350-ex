@@ -78,19 +78,21 @@ class EmployeRepositoryTest {
 
     @Test
     public void testavgPerformanceWhereMatriculeStartsWith() throws Exception{
-
+        //given
         employeRepository.save(new Employe("Doe","John","C12345", LocalDate.now(),1500d,Entreprise.PERFORMANCE_BASE,1.0));
         employeRepository.save(new Employe("Doe","Jane","C40325", LocalDate.now(),1500d,Entreprise.PERFORMANCE_BASE,1.0));
 
-
+        //when
         Double Performance = employeRepository.avgPerformanceWhereMatriculeStartsWith("C");
 
+        //then
         Assertions.assertThat(Performance).isEqualTo(Entreprise.PERFORMANCE_BASE.doubleValue());
 
     }
 
     @Test
     public void testavgPerformanceWhereMatriculeStartsWithoutEmploye() throws Exception{
+        //then
         Assertions.assertThat(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).isNull();
 
     }

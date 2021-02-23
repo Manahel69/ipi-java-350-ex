@@ -81,7 +81,7 @@ public class Employe {
      @return le nombre de jours de RTT pour l'employel'annee de la date de reference
  */
 public Integer getNbRtt(LocalDate d ) {
-    System.out.println(d);
+    //System.out.println(d);
     int nbJoursAnnee = d.isLeapYear() ? 366 : 365;
     int nbSamediDimache = 104;
     switch (LocalDate.of(d.getYear(), 1, 1).getDayOfWeek()) {
@@ -89,7 +89,7 @@ public Integer getNbRtt(LocalDate d ) {
             if (d.isLeapYear()) nbSamediDimache = nbSamediDimache + 1;
             break;
         case FRIDAY:
-            System.out.println("test");
+           // System.out.println("test");
             if (d.isLeapYear()) nbSamediDimache = nbSamediDimache + 2;
             else nbSamediDimache = nbSamediDimache + 1;
             break;
@@ -100,8 +100,8 @@ public Integer getNbRtt(LocalDate d ) {
     int nbJoursFeriesSemaine = (int) Entreprise.joursFeries(d).stream().filter(localDate ->
             localDate.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue()).count();
 
-    System.out.println(nbJoursFeriesSemaine);
-    System.out.println(nbSamediDimache);
+    //System.out.println(nbJoursFeriesSemaine);
+    //System.out.println(nbSamediDimache);
     return (int) Math.ceil(
             (nbJoursAnnee -
                     Entreprise.NB_JOURS_MAX_FORFAIT
