@@ -69,8 +69,8 @@ public class EmployeService {
 
         //Création et sauvegarde en BDD de l'employé.
         Employe employe = new Employe(nom, prenom, matricule, LocalDate.now(), salaire, Entreprise.PERFORMANCE_BASE, tempsPartiel);
-//        employe = employeRepository.save(employe);
-       // logger.info("Employé créé : {}", employe.toString());
+       // employe = employeRepository.save(employe);
+        //logger.info("Employé créé : {}", employe.toString());
         employeRepository.save(employe);
        // return employe;
 
@@ -79,7 +79,7 @@ public class EmployeService {
 
     /**
      * Méthode calculant la performance d'un commercial en fonction de ses objectifs et du chiffre d'affaire traité dans l'année.
-     * Cette performance lui est affectée et sauvegardée en BDD
+     * Cette performance lui est affectée et sauvegardée en BDD.
      *
      * 1 : Si le chiffre d'affaire est inférieur de plus de 20% à l'objectif fixé, le commercial retombe à la performance de base
      * 2 : Si le chiffre d'affaire est inférieur entre 20% et 5% par rapport à l'ojectif fixé, il perd 2 de performance (dans la limite de la performance de base)
@@ -140,6 +140,6 @@ public class EmployeService {
         //Affectation et sauvegarde
         employe.setPerformance(performance);
         employeRepository.save(employe);
-
     }
+
 }

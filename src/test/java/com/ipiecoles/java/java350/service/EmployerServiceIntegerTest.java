@@ -1,6 +1,7 @@
 package com.ipiecoles.java.java350.service;
 
 import com.ipiecoles.java.java350.model.Employe;
+import com.ipiecoles.java.java350.model.Entreprise;
 import com.ipiecoles.java.java350.model.NiveauEtude;
 import com.ipiecoles.java.java350.model.Poste;
 import com.ipiecoles.java.java350.repository.EmployeRepository;
@@ -35,17 +36,41 @@ public class EmployerServiceIntegerTest {
 
             //then
             List<Employe> employes = employeRepository.findAll();
-            Assertions.assertThat(employes).hasSize(1);
+            Assertions.assertThat(employes).hasSize(2);
             Employe employe = employeRepository.findAll().get(0);
             Assertions.assertThat(employe.getNom()).isEqualTo(nom);
             Assertions.assertThat(employe.getPrenom()).isEqualTo(prenom);
             Assertions.assertThat(employe.getSalaire()).isEqualTo(1825.46);
             Assertions.assertThat(employe.getTempsPartiel()).isEqualTo(1.0);
             Assertions.assertThat(employe.getDateEmbauche()).isEqualTo(LocalDate.now());
-            Assertions.assertThat(employe.getMatricule()).isEqualTo("T00001");
+            Assertions.assertThat(employe.getMatricule()).isEqualTo("C00001");
 
 
         }
+
+        @Test
+        public void testCalculPerformanceCommercialCalculPerformance() throws  Exception{
+            //given
+            String nom = "Doe";
+            String prenom = "John";
+            Poste poste = Poste.COMMERCIAL;
+            NiveauEtude niveauEtude = NiveauEtude.BTS_IUT;
+            Double tempsPartiel = 1.0 ;
+
+            employeService.embaucheEmploye(nom,prenom,poste,niveauEtude,tempsPartiel);
+
+            //then
+
+           String matricule = "C00001";
+           employeService.calculPerformanceCommercial(matricule,1500L,2500L);
+           Employe employe = employeRepository.findByMatricule(matricule);
+
+          // then
+           Assertions.assertThat(employe.getPerformance()).isEqualTo(Entreprise.PERFORMANCE_BASE);
+
+
+        }
+
 
 }
 

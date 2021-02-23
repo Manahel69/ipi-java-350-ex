@@ -3,6 +3,9 @@ package com.ipiecoles.java.java350.repository;
 
 import com.ipiecoles.java.java350.Java350Application;
 import com.ipiecoles.java.java350.model.Employe;
+import com.ipiecoles.java.java350.model.Entreprise;
+import com.ipiecoles.java.java350.model.NiveauEtude;
+import com.ipiecoles.java.java350.model.Poste;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
@@ -24,6 +27,7 @@ import java.time.LocalDate;
 class EmployeRepositoryTest {
     @Autowired
     EmployeRepository employeRepository;
+
 
     @Test
     public void testFindLastMatricule0Employe(){
@@ -71,5 +75,27 @@ class EmployeRepositoryTest {
     public void purgeBdd(){
         employeRepository.deleteAll();
     }
+
+    @Test
+    public void testavgPerformanceWhereMatriculeStartsWith() throws Exception{
+        //given
+        employeRepository.save(new Employe("Doe","John","C12345", LocalDate.now(),1500d,Entreprise.PERFORMANCE_BASE,1.0));
+        employeRepository.save(new Employe("Doe","Jane","C40325", LocalDate.now(),1500d,Entreprise.PERFORMANCE_BASE,1.0));
+
+        //when
+        Double Performance = employeRepository.avgPerformanceWhereMatriculeStartsWith("C");
+
+        //then
+        Assertions.assertThat(Performance).isEqualTo(Entreprise.PERFORMANCE_BASE.doubleValue());
+
+    }
+
+    @Test
+    public void testavgPerformanceWhereMatriculeStartsWithoutEmploye() throws Exception{
+        //then
+        Assertions.assertThat(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).isNull();
+
+    }
+
 
 }
